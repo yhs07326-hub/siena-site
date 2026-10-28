@@ -12,6 +12,11 @@
   var ok = document.getElementById('privacy-ok');
   var cancel = document.getElementById('privacy-cancel');
   var mode = 'info';
+  var privacySource = 'unknown';
+
+  function track(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  }
 
   function wipe() {
     if (!form) return;
@@ -22,44 +27,61 @@
     form.reset();
   }
 
-  function open(m) {
+  function open(m, source) {
     mode = m;
+    privacySource = source || 'unknown';
     agree.checked = false;
     ok.disabled = true;
     ok.textContent = m === 'submit' ? '동의하고 완료하기' : '확인했습니다';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     agree.focus();
+    track('privacy_notice_action', { action_type: 'open', privacy_source: privacySource });
   }
 
-  function close() {
+  function close(action) {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
+    if (action) track('privacy_notice_action', { action_type: action, privacy_source: privacySource });
   }
 
   agree.addEventListener('change', function () { ok.disabled = !agree.checked; });
-  cancel.addEventListener('click', close);
-  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  cancel.addEventListener('click', function () { close('close_button'); });
+  modal.addEventListener('click', function (e) { if (e.target === modal) close('dismiss_background'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close('dismiss_escape'); });
 
   ok.addEventListener('click', function () {
-    if (mode !== 'submit') { close(); return; }
+    if (mode !== 'submit') {
+      track('privacy_notice_action', { action_type: 'acknowledge', privacy_source: privacySource });
+      close();
+      return;
+    }
+    var timing = (form.querySelector('#f-select') || {}).value || '';
+    var timingValues = {
+      '3개월 이내': 'within_3_months',
+      '3~6개월': '3_to_6_months',
+      '6개월~1년': '6_to_12_months',
+      '미정': 'undecided'
+    };
     wipe();
-    // 분석 도구를 붙였다면 여기서 개인정보 없이 이벤트 이름만 보냅니다 (Day 34~35).
-    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead');
+    // 완료 페이지가 열린 뒤 전송해 페이지 이동 중 이벤트가 유실되지 않게 합니다.
+    var timingKey = timingValues[timing] || 'unknown';
     if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
-    location.replace('result.html');
+    location.replace('result.html?lead=1&wedding_timing=' + encodeURIComponent(timingKey));
   });
 
   document.querySelectorAll('[data-privacy-open]').forEach(function (b) {
-    b.addEventListener('click', function (e) { e.preventDefault(); open('info'); });
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      open('info', b.getAttribute('data-privacy-source') || 'unknown');
+    });
   });
 
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      open('submit');
+      open('submit', 'form_submit');
     });
   }
 
