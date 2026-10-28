@@ -52,12 +52,4 @@
       link_url: linkUrl(this)
     });
   });
-
-  if (window.SIENA_LEAD_COMPLETION) {
-    track('generate_lead', {
-      form_id: 'lead-form',
-      lead_type: 'wedding_consultation',
-      wedding_timing: window.SIENA_LEAD_COMPLETION.wedding_timing
-    });
-  }
 })();
