@@ -51,23 +51,12 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close('dismiss_escape'); });
 
   ok.addEventListener('click', function () {
-    if (mode !== 'submit') {
-      track('privacy_notice_action', { action_type: 'acknowledge', privacy_source: privacySource });
-      close();
-      return;
-    }
-    var timing = (form.querySelector('#f-select') || {}).value || '';
-    var timingValues = {
-      '3개월 이내': 'within_3_months',
-      '3~6개월': '3_to_6_months',
-      '6개월~1년': '6_to_12_months',
-      '미정': 'undecided'
-    };
+    if (mode !== 'submit') { close(); return; }
     wipe();
-    // 완료 페이지가 열린 뒤 전송해 페이지 이동 중 이벤트가 유실되지 않게 합니다.
-    var timingKey = timingValues[timing] || 'unknown';
+    // 분석 도구를 붙였다면 여기서 개인정보 없이 이벤트 이름만 보냅니다 (Day 34~35).
+    if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead');
     if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
-    location.replace('result.html?lead=1&wedding_timing=' + encodeURIComponent(timingKey));
+    location.replace('result.html');
   });
 
   document.querySelectorAll('[data-privacy-open]').forEach(function (b) {
