@@ -12,6 +12,11 @@
   var ok = document.getElementById('privacy-ok');
   var cancel = document.getElementById('privacy-cancel');
   var mode = 'info';
+  var privacySource = 'unknown';
+
+  function track(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  }
 
   function wipe() {
     if (!form) return;
@@ -22,25 +27,28 @@
     form.reset();
   }
 
-  function open(m) {
+  function open(m, source) {
     mode = m;
+    privacySource = source || 'unknown';
     agree.checked = false;
     ok.disabled = true;
     ok.textContent = m === 'submit' ? '동의하고 완료하기' : '확인했습니다';
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     agree.focus();
+    track('privacy_notice_action', { action_type: 'open', privacy_source: privacySource });
   }
 
-  function close() {
+  function close(action) {
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
+    if (action) track('privacy_notice_action', { action_type: action, privacy_source: privacySource });
   }
 
   agree.addEventListener('change', function () { ok.disabled = !agree.checked; });
-  cancel.addEventListener('click', close);
-  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  cancel.addEventListener('click', function () { close('close_button'); });
+  modal.addEventListener('click', function (e) { if (e.target === modal) close('dismiss_background'); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close('dismiss_escape'); });
 
   ok.addEventListener('click', function () {
     if (mode !== 'submit') { close(); return; }
@@ -52,14 +60,17 @@
   });
 
   document.querySelectorAll('[data-privacy-open]').forEach(function (b) {
-    b.addEventListener('click', function (e) { e.preventDefault(); open('info'); });
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      open('info', b.getAttribute('data-privacy-source') || 'unknown');
+    });
   });
 
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      open('submit');
+      open('submit', 'form_submit');
     });
   }
 

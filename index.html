@@ -81,28 +81,35 @@ body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;color:var
   .sh{margin-top:80px}.sh h2{font-size:32px}
 }
 </style>
-<!-- GA4 (Day 34에 여기에 붙이기) -->
+<script src="assets/ga4-config.js"></script>
 <!-- Meta Pixel (Day 35에 여기에 붙이기) -->
 <!-- Microsoft Clarity (Day 38에 여기에 붙이기) -->
 <!-- Schema JSON-LD (Day 29) -->
 </head>
 <body>
-<header class="hd" id="hd"><a class="logo" href="./">Siena<small>WEDDING FILM</small></a>
-  <nav><a href="./">Home</a><a href="#about">About us</a><a href="#portfolio">Portfolio</a><a href="#price">Price</a><a href="#apply" id="cta-top">Reservation</a><a href="#" data-privacy-open>Privacy</a></nav></header>
+<header class="hd" id="hd"><a class="logo" href="./" data-ga-nav="logo" data-ga-location="header">Siena<small>WEDDING FILM</small></a>
+  <nav><a href="./" data-ga-nav="home" data-ga-location="header">Home</a><a href="#about" data-ga-nav="about" data-ga-location="header">About us</a><a href="#portfolio" data-ga-nav="portfolio" data-ga-location="header">Portfolio</a><a href="#price" data-ga-nav="price" data-ga-location="header">Price</a><a href="#apply" id="cta-top" data-ga-cta="header">Reservation</a><a href="#" data-privacy-open data-privacy-source="header">Privacy</a></nav></header>
 
 <main>
 <section class="hero">
   <div class="bg"><div class="ph "><span><span class="todo">메인 자동 반복 영상 배너 (24frame 참고) → mp4 또는 대표 스틸</span></span></div></div>
   <span class="play">● AUTO PLAY · LOOP</span>
-  <div class="line"><h1><span class="todo">그날을 다시 보게 만드는 한 문장</span><small>웨딩 본식 영상 촬영과 편집, 본식 DVD와 서브스냅 촬영까지.</small></h1><a class="pill" href="#apply" id="cta-main">촬영 상담 신청</a></div>
+  <div class="line"><h1><span class="todo">그날을 다시 보게 만드는 한 문장</span><small>웨딩 본식 영상 촬영과 편집, 본식 DVD와 서브스냅 촬영까지.</small></h1><a class="pill" href="#apply" id="cta-main" data-ga-cta="hero">촬영 상담 신청</a></div>
 </section>
 
 <div class="in">
-  <div class="sh" id="portfolio"><div><h2>Portfolio</h2><p>WEDDING FILM · 본식 영상</p></div><a href="#portfolio">VIEW ALL →</a></div>
-  <div class="grid2"><a href="#apply"><div class="v"><div class="ph "><span><span class="todo">작품 1</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 1</span></span></a><a href="#apply"><div class="v"><div class="ph "><span><span class="todo">작품 2</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 2</span></span></a><a href="#apply"><div class="v"><div class="ph "><span><span class="todo">작품 3</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 3</span></span></a><a href="#apply"><div class="v"><div class="ph "><span><span class="todo">작품 4</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 4</span></span></a><a href="#apply"><div class="v"><div class="ph "><span><span class="todo">작품 5</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 5</span></span></a><a href="#apply"><div class="v"><div class="ph "><span><span class="todo">작품 6</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 6</span></span></a></div>
-  <p class="more"><a href="#portfolio">SHOW MORE</a></p>
+  <div class="sh" id="portfolio"><div><h2>Portfolio</h2><p>WEDDING FILM · 본식 영상</p></div><a href="#portfolio" data-portfolio-action="view_all" data-portfolio-location="section_header">VIEW ALL →</a></div>
+  <div class="grid2">
+    <a href="#apply" data-content-type="portfolio" data-content-id="portfolio_01" data-content-title="작품 1" data-content-position="1"><div class="v"><div class="ph "><span><span class="todo">작품 1</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 1</span></span></a>
+    <a href="#apply" data-content-type="portfolio" data-content-id="portfolio_02" data-content-title="작품 2" data-content-position="2"><div class="v"><div class="ph "><span><span class="todo">작품 2</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 2</span></span></a>
+    <a href="#apply" data-content-type="portfolio" data-content-id="portfolio_03" data-content-title="작품 3" data-content-position="3"><div class="v"><div class="ph "><span><span class="todo">작품 3</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 3</span></span></a>
+    <a href="#apply" data-content-type="portfolio" data-content-id="portfolio_04" data-content-title="작품 4" data-content-position="4"><div class="v"><div class="ph "><span><span class="todo">작품 4</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 4</span></span></a>
+    <a href="#apply" data-content-type="portfolio" data-content-id="portfolio_05" data-content-title="작품 5" data-content-position="5"><div class="v"><div class="ph "><span><span class="todo">작품 5</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 5</span></span></a>
+    <a href="#apply" data-content-type="portfolio" data-content-id="portfolio_06" data-content-title="작품 6" data-content-position="6"><div class="v"><div class="ph "><span><span class="todo">작품 6</span> 16:9 영상 썸네일</span></div></div><span><span class="todo">작품 6</span></span></a>
+  </div>
+  <p class="more"><a href="#portfolio" data-portfolio-action="show_more" data-portfolio-location="section_bottom">SHOW MORE</a></p>
 
-  <div class="sh"><div><h2>Highlight</h2><p>인스타그램에 올리기 좋은 세로 하이라이트</p></div><a href="#apply">‹ ›</a></div>
+  <div class="sh"><div><h2>Highlight</h2><p>인스타그램에 올리기 좋은 세로 하이라이트</p></div><a href="#apply" data-ga-cta="highlight">‹ ›</a></div>
   <div class="reels"><div><div class="ph "><span><span class="todo">세로 9:16 하이라이트 1</span></span></div></div><div><div class="ph "><span><span class="todo">세로 9:16 하이라이트 2</span></span></div></div><div><div class="ph "><span><span class="todo">세로 9:16 하이라이트 3</span></span></div></div></div>
 
   <div class="sh" id="about"><div><h2>About us</h2><p>SIENA가 촬영하는 방식</p></div></div>
@@ -123,14 +130,14 @@ body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;color:var
 <label class="field"><span>연락처</span><input id="f-contact" type="tel" required pattern="[0-9\- ]{9,14}" placeholder="010-0000-0000"></label>
 <label class="field"><span>예식 시기</span><select id="f-select" required><option value="">선택해 주세요</option><option>3개월 이내</option><option>3~6개월</option><option>6개월~1년</option><option>미정</option></select></label>
 
-    <div class="safe-note"><span aria-hidden="true">🔒</span><div>입력한 정보는 <b>어디에도 전송·저장되지 않고</b> 완료 즉시 지워집니다. <button type="button" data-privacy-open>자세히 보기</button></div></div>
+    <div class="safe-note"><span aria-hidden="true">🔒</span><div>입력한 정보는 <b>어디에도 전송·저장되지 않고</b> 완료 즉시 지워집니다. <button type="button" data-privacy-open data-privacy-source="form_note">자세히 보기</button></div></div>
     <button class="submit" type="submit" id="cta-submit">촬영 상담 신청</button>
   </form>
 </section>
 </main>
-<a class="float" href="#apply">상담 신청</a>
+<a class="float" href="#apply" data-ga-cta="floating">상담 신청</a>
 
-<footer class="ft"><p style="margin:0">이 페이지는 수업 실습용 페이지입니다. 실제 판매·결제는 이루어지지 않으며, 표기된 수치·후기는 예시입니다.</p><p style="margin:4px 0 0">SIENA WEDDING FILM · <a href="#" data-privacy-open>개인정보 처리 안내</a></p><div class="sns"><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Blog</a></div></footer>
+<footer class="ft"><p style="margin:0">이 페이지는 수업 실습용 페이지입니다. 실제 판매·결제는 이루어지지 않으며, 표기된 수치·후기는 예시입니다.</p><p style="margin:4px 0 0">SIENA WEDDING FILM · <a href="#" data-privacy-open data-privacy-source="footer">개인정보 처리 안내</a></p><div class="sns"><a href="#" data-ga-social="instagram">Instagram</a><a href="#" data-ga-social="youtube">YouTube</a><a href="#" data-ga-social="blog">Blog</a></div></footer>
 <script>(function(){var h=document.getElementById('hd');function f(){h.classList.toggle('solid',scrollY>innerHeight-120)}addEventListener('scroll',f,{passive:true});f()})();</script>
 <div class="modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" aria-hidden="true">
   <div class="modal-box">
@@ -140,6 +147,7 @@ body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;color:var
       <li><strong>입력하신 정보는 절대 저장하지 않습니다.</strong> 서버, 데이터베이스, 스프레드시트, 이메일, 외부 서비스 어디로도 전송되지 않습니다.</li>
       <li>입력값은 이 브라우저 화면에만 잠시 머물며, 완료 버튼을 누르는 <strong>즉시 화면에서 지워집니다.</strong> 쿠키나 브라우저 저장소에도 남기지 않습니다.</li>
       <li>페이지 제작자와 강사를 포함한 <strong>누구도 입력값을 볼 수 없습니다.</strong></li>
+      <li>Google Analytics 4로 페이지 조회와 버튼 클릭 등 <strong>익명 방문 통계</strong>를 집계할 수 있으며, 입력한 이름과 연락처는 분석 도구로 전송하지 않습니다.</li>
     </ol>
     <label><input type="checkbox" id="privacy-agree"> 위 내용을 확인했으며, 입력값이 저장되지 않고 즉시 파기된다는 점에 동의합니다.</label>
     <div class="modal-actions">
@@ -147,6 +155,6 @@ body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;color:var
       <button type="button" class="ok" id="privacy-ok" disabled>확인했습니다</button>
     </div>
   </div>
-</div><script src="assets/privacy.js"></script>
+</div><script src="assets/privacy.js"></script><script src="assets/analytics.js"></script>
 </body>
 </html>
