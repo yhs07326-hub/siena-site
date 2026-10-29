@@ -8,29 +8,29 @@
 
   function track(name, params) {
     if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
-    if (!window.fbq || name === 'page_view' || name.indexOf('scroll') !== -1) return;
+    if (window.fbq && name !== 'page_view' && name.indexOf('scroll') === -1) {
+      var metaEventNames = {
+        generate_lead: 'Lead',
+        sign_up: 'CompleteRegistration',
+        contact_click: 'Contact',
+        view_item: 'ViewContent',
+        add_to_cart: 'AddToCart',
+        begin_checkout: 'InitiateCheckout',
+        purchase: 'Purchase',
+        search: 'Search'
+      };
+      var metaName = metaEventNames[name];
 
-    var metaEventNames = {
-      generate_lead: 'Lead',
-      sign_up: 'CompleteRegistration',
-      contact_click: 'Contact',
-      view_item: 'ViewContent',
-      add_to_cart: 'AddToCart',
-      begin_checkout: 'InitiateCheckout',
-      purchase: 'Purchase',
-      search: 'Search'
-    };
-    var metaName = metaEventNames[name];
-
-    if (metaName === 'Purchase') {
-      fbq('track', 'Purchase', {
-        value: params && params.value != null ? params.value : 0,
-        currency: 'KRW'
-      });
-    } else if (metaName) {
-      fbq('track', metaName);
-    } else {
-      fbq('trackCustom', name);
+      if (metaName === 'Purchase') {
+        fbq('track', 'Purchase', {
+          value: params && params.value != null ? params.value : 0,
+          currency: 'KRW'
+        });
+      } else if (metaName) {
+        fbq('track', metaName);
+      } else {
+        fbq('trackCustom', name);
+      }
     }
   }
 
